@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <cstdio>
+#include <csignal>
+#include <iostream>
+
+void blockAllSignals() {
+    sigset_t set;
+    sigfillset(&set);
+    
+    if (sigprocmask(SIG_SETMASK, &set, NULL) == -1) {
+		perror("sigprocmask");
+    }
+}
 
 void	displayInterface(PhoneBook &ph, int inLoop)
 {
@@ -37,6 +49,7 @@ int	main(void)
 	std::string	idx;
 	PhoneBook	ph;
 
+	blockAllSignals();
 	/*	Maybe
 	*	std::signal(SIGINT, SIG_IGN);
 	*/
