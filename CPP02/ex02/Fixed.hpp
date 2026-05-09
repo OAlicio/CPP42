@@ -40,10 +40,10 @@ class	Fixed
 		bool operator==(const Fixed &value) const;
 		bool operator!=(const Fixed &value) const;
 		//|       Arithmetic operators            |
-		Fixed& operator+(const Fixed &value);
-		Fixed& operator-(const Fixed &value);
-		Fixed& operator*(const Fixed &value);
-		Fixed& operator/(const Fixed &value);
+		Fixed operator+(const Fixed &value);
+		Fixed operator-(const Fixed &value);
+		Fixed operator*(const Fixed &value);
+		Fixed operator/(const Fixed &value);
 		//|   Increment/Decrement(pre and post)   |
 		Fixed& operator++();
 		Fixed& operator--();
