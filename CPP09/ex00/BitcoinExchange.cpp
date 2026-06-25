@@ -6,7 +6,7 @@
 /*   By: ofeverei <ofeverei@student.42luanda.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 16:50:35 by ofeverei          #+#    #+#             */
-/*   Updated: 2026/06/25 15:46:17 by ofeverei         ###   ########.fr       */
+/*   Updated: 2026/06/25 16:48:43 by ofeverei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,16 @@ BitcoinExchange::~BitcoinExchange()
 BitcoinExchange::BitcoinExchange(const std::string file)
 {
 	fileName = file;
-	bitFile = std::ifstream(fileName);
-	if (!bitFile)
-		throw std::runtime_error("Invalid DB file: " + file);
+	this->open(fileName);
 }
 
 void BitcoinExchange::open(const std::string file)
 {
-	fileName = file;
+	if (fileName != file)
+		fileName = file;
 	if (bitFile.is_open())
 		bitFile.close();
-	bitFile = std::ifstream(fileName);
+	bitFile.open(fileName.c_str());
 	if (!bitFile)
 		throw std::runtime_error("Invalid DB file: " + file);
 }
@@ -45,12 +44,15 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
+	if (this != &other)
+	{
+	}
 	return *this;
 }
 
-std::ifstream BitcoinExchange::getFStream() const
+const std::string BitcoinExchange::getFStream() const
 {
-	return std::ifstream(fileName);
+	return fileName;
 }
 
 bool isDbHeader(std::string &header)
@@ -121,7 +123,7 @@ bool	isValidInput(std::string &str)
 
 void	BitcoinExchange::exchange(const std::string file)
 {
-	std::ifstream exfile(file);
+	std::ifstream exfile(file.c_str());
 	std::string data;
 	std::string key;
 	std::string value;

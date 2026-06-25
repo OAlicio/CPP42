@@ -6,7 +6,7 @@
 /*   By: ofeverei <ofeverei@student.42luanda.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 16:59:12 by ofeverei          #+#    #+#             */
-/*   Updated: 2026/06/25 14:57:17 by ofeverei         ###   ########.fr       */
+/*   Updated: 2026/06/25 16:48:14 by ofeverei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sstream>
 # include <climits>
 # include <cmath>
+# include <cstdlib>
 
 class BitcoinExchange
 {
@@ -34,7 +35,7 @@ class BitcoinExchange
 		BitcoinExchange(const std::string file);
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange &other);
-		std::ifstream getFStream() const;
+		const std::string getFStream() const;
 		void	loadDb();
 		void	exchange(const std::string file);
 		void	open(const std::string file);
