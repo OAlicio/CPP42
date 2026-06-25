@@ -6,7 +6,7 @@
 /*   By: ofeverei <ofeverei@student.42luanda.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 16:59:12 by ofeverei          #+#    #+#             */
-/*   Updated: 2026/06/23 17:27:38 by ofeverei         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:57:17 by ofeverei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 # define BITCOINEXCHANGE_HPP
 
 # include <iostream>
+# include <string>
+# include <map>
 # include <fstream>
 # include <sstream>
+# include <climits>
+# include <cmath>
 
 class BitcoinExchange
 {
@@ -25,12 +29,15 @@ class BitcoinExchange
 		BitcoinExchange();
 
 	public:
+		std::map<std::string, double> m;
 		~BitcoinExchange();
-		BitcoinExchange(std::string file);
+		BitcoinExchange(const std::string file);
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		std::ifstream getFStream() const;
-		void	Exchange();
+		void	loadDb();
+		void	exchange(const std::string file);
+		void	open(const std::string file);
 };
 
 #endif
